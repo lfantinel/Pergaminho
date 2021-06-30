@@ -11,32 +11,32 @@ import static br.com.roborg.pergaminho.TextField.Case.NORMAL;
 public class TextField extends AbsLayoutField<CharSequence> {
 
     public enum Pad {
-        LPAD, RPAD;
+        LPAD, RPAD
     }
 
     public enum Case {
-        NORMAL, UPPER, LOWER;
+        NORMAL, UPPER, LOWER
     }
 
-    private Pad pad;
-    private char character;
-    private Case mCase = NORMAL;
+    private Pad padType;
+    private char padChar;
+    private Case caseType = NORMAL;
 
     public TextField (Integer size) {
         super(size);
     }
 
-    public TextField (Integer size, Pad pad, char character) {
+    public TextField (Integer size, Pad padType, char padChar) {
         super(size);
-        this.pad = pad;
-        this.character = character;
+        this.padType = padType;
+        this.padChar = padChar;
     }
 
-    public TextField(Integer size, Pad pad, char character, Case mCase) {
+    public TextField(Integer size, Pad padType, char padChar, Case caseType) {
         super(size);
-        this.pad = pad;
-        this.character = character;
-        this.mCase = mCase;
+        this.padType = padType;
+        this.padChar = padChar;
+        this.caseType = caseType;
     }
 
     @Override
@@ -49,12 +49,12 @@ public class TextField extends AbsLayoutField<CharSequence> {
         CharSequence result = value();
         if (result.length() >= size()) {
             result = result.toString().substring(0, size());
-        } else if (pad != null) {
-            result =  Pad.LPAD.equals(pad)
-                    ? StringUtil.lpad(value(),size(),character)
-                    : StringUtil.rpad(value(),size(),character);
+        } else if (padType != null) {
+            result =  Pad.LPAD.equals(padType)
+                    ? StringUtil.lpad(value(),size(), padChar)
+                    : StringUtil.rpad(value(),size(), padChar);
         }
-        switch (mCase) {
+        switch (caseType) {
             case UPPER:
                 return result.toString().toUpperCase();
             case LOWER:

@@ -11,11 +11,15 @@ abstract class AbsLayoutField<T> implements LayoutField<T> {
     @Getter @Setter
     private T value;
 
-    @Getter
-    private final int size;
+    @Getter @NonNull
+    private int size;
 
     protected AbsLayoutField() {
         this.size = 0;
+    }
+
+    protected void setSize(int size) {
+        this.size = size;
     }
 
     @Override
